@@ -1,5 +1,5 @@
 FROM php:5.4-apache
-LABEL maintainer="Alterway <iac@alterway.fr>"
+LABEL maintainer="Amauri Franco <programador.amauri@gmail.com>"
 
 RUN apt-get update && \
     apt-get install -y \
@@ -48,6 +48,7 @@ RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h && \
     docker-php-ext-install pcntl && \
     docker-php-ext-install ftp && \
     docker-php-ext-install sockets && \
+    docker-php-ext-install gettext && \
     pecl install mongo && \
     pecl install memcached-2.2.0 && \
     pecl install redis && \
@@ -58,7 +59,7 @@ RUN tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp && \
     mv /tmp/blackfire-*.so `php -r "echo ini_get('extension_dir');"`/blackfire.so && \
     rm /tmp/blackfire-probe.tar.gz
 
-ENV LOCALTIME Europe/Paris
+ENV LOCALTIME America/Sao_Paulo
 
 ENV HTTPD_CONF_DIR /etc/apache2/conf-enabled/
 ENV HTTPD__DocumentRoot /var/www/html
